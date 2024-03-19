@@ -15,5 +15,5 @@ export function useTheme () {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-  return { handleChangeTheme }
+  return { handleChangeTheme, theme }
 }
