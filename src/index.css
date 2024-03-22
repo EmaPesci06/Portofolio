@@ -11,3 +11,7 @@
     font-family: 'Homoarak';
     src: url('./assets/font/HOMOARAK.TTF');
 }
+
+*{
+    box-sizing: border-box;
+}

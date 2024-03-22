@@ -7,14 +7,14 @@ function App () {
     <>
       <Header />
 
-      <main className='bg-zinc-300 dark:bg-zinc-900 dark:text-white py-5'>
+      <main className='flex flex-col bg-zinc-300 dark:bg-zinc-900 dark:text-white py-5'>
         <Projects />
 
         <Contact />
       </main>
 
       <footer>
-        <p className='text-center py-5 bg-slate-100 dark:bg-slate-900 dark:text-white'> © Emanuel Pesci - 2024</p>
+        <p className='text-center py-5 bg-slate-100 dark:bg-slate-700 dark:text-white'> © Emanuel Pesci - 2024</p>
       </footer>
 
     </>
