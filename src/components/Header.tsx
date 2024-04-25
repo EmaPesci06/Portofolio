@@ -25,7 +25,6 @@ export function Header () {
           src='../src/assets/img/yoX2.webp'
           alt='Emanuel Pesci'
           className='rounded-full h-1/2 sm:h-96 mt-4'
-          loading='lazy'
         />
 
         <article className='flex flex-col justify-center sm:mx-4'>
