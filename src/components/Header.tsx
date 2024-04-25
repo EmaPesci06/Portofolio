@@ -3,6 +3,8 @@ import { useTheme } from '../hooks/useTheme'
 import { faMoon, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import IconsLight from './IconsLigth'
+import myself from '../assets/img/yoX2.webp'
+import cv from '../assets/Cv-EmanuelPesci-es.pdf'
 
 export function Header () {
   const { handleChangeTheme, theme } = useTheme()
@@ -22,7 +24,7 @@ export function Header () {
 
       <section className='flex flex-col sm:flex-row mx-5 justify-center gap-20 '>
         <img
-          src='../src/assets/img/yoX2.webp'
+          src={myself}
           alt='Emanuel Pesci'
           className='rounded-full h-1/2 sm:h-96 mt-4'
         />
@@ -31,7 +33,7 @@ export function Header () {
           <h1 className='text-8xl font-bangers'>Emanuel Pesci</h1>
           <h2 className='text-4xl mt-1'>Fullstack Developer</h2>
           <p className='w-96 mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat dolorem dolor fugit eligendi dolore quidem sit natus ratione! Possimus nisi qui, tempora laboriosam cumque velit dignissimos accusamus consequatur maxime! Eveniet.</p>
-          <a className='block py-2 px-4 mx-auto mt-8 bg-sky-900 text-white rounded-xl w-56 text-center ' href='../assets/Cv-EmanuelPesci-es.pdf' download='Cv-EmanuelPesci-es.pdf'>Descargar Cv</a>
+          <a className='block py-2 px-4 mx-auto mt-8 bg-sky-900 text-white rounded-xl w-56 text-center ' href={cv} download='Cv-EmanuelPesci-es.pdf'>Descargar Cv</a>
           <div className='flex justify-evenly mt-4'>
             <a className='block' href='https://www.linkedin.com/in/emanuel-pesci' target='_blank' rel='noreferrer'>
               <FontAwesomeIcon
