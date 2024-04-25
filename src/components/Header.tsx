@@ -28,7 +28,6 @@ export function Header () {
         />
 
         <article className='flex flex-col justify-center sm:mx-4'>
-          <p>algo</p>
           <h1 className='text-8xl font-bangers'>Emanuel Pesci</h1>
           <h2 className='text-4xl mt-1'>Fullstack Developer</h2>
           <p className='w-96 mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat dolorem dolor fugit eligendi dolore quidem sit natus ratione! Possimus nisi qui, tempora laboriosam cumque velit dignissimos accusamus consequatur maxime! Eveniet.</p>
