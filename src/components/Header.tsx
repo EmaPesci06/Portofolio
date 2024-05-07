@@ -10,7 +10,7 @@ export function Header () {
   const { handleChangeTheme, theme } = useTheme()
 
   return (
-    <header className='bg-slate-100 py-3 dark:bg-slate-900 dark:text-white md:h-lvh  overflow-x-hidden overflow-y-hidden sm'>
+    <header className='bg-slate-100 pt-6 dark:bg-slate-900 dark:text-white md:h-lvh  overflow-x-hidden overflow-y-hidden sm'>
       <nav>
         <ul className='flex relative'>
           <button

@@ -15,85 +15,54 @@ import python from '../assets/svg/python-5.svg'
 import react from '../assets/svg/react.svg'
 import tailwind from '../assets/svg/tailwindcss.svg'
 import typescript from '../assets/svg/typescript.svg'
+import Marquee from 'react-fast-marquee'
 
 export default function IconsLight ({ theme }: { theme: string }) {
+  const iconsDark = [
+    { icon: amazon, alt: 'Amazon Web Services' },
+    { icon: angular, alt: 'Angular' },
+    { icon: bootstrap, alt: 'Bootstrap' },
+    { icon: django, alt: 'Django' },
+    { icon: git, alt: 'Git' },
+    { icon: javascript, alt: 'Javascript' },
+    { icon: nest, alt: 'Nestjs' },
+    { icon: next, alt: 'Nextjs' },
+    { icon: node, alt: 'Nodejs' },
+    { icon: python, alt: 'Python' },
+    { icon: react, alt: 'React' },
+    { icon: tailwind, alt: 'Tailwindcss' },
+    { icon: typescript, alt: 'Typescript' }
+  ]
+
+  const iconsLight = [
+    { icon: amazonW, alt: 'Amazon Web Services' },
+    { icon: angular, alt: 'Angular' },
+    { icon: bootstrap, alt: 'Bootstrap' },
+    { icon: djangoW, alt: 'Django' },
+    { icon: gitW, alt: 'Git' },
+    { icon: javascript, alt: 'Javascript' },
+    { icon: nest, alt: 'Nestjs' },
+    { icon: nextL, alt: 'Nextjs' },
+    { icon: node, alt: 'Nodejs' },
+    { icon: python, alt: 'Python' },
+    { icon: react, alt: 'React' },
+    { icon: tailwind, alt: 'Tailwindcss' },
+    { icon: typescript, alt: 'Typescript' }
+  ]
+
+  const icons = theme === 'dark' ? iconsLight : iconsDark
+
   return (
-    <div className='flex mt-14 justify-center py-5 w-max'>
-      <div className='flex animate-horizontalScroll gap-12 mr-12'>
+    <Marquee>
+      {icons.map(({ icon, alt }) => (
+        <img
+          key={alt}
+          src={icon}
+          alt={alt}
+          className='w-24 h-24 mx-6 mt-8'
+        />
+      ))}
+    </Marquee>
 
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={amazonW} alt='React' title='Amazon Light' />
-            : <img className='w-16 h-16' src={amazon} alt='React' title='AWS' />
-        }
-
-        <img className='w-16 h-16' src={angular} alt='React' title='React' />
-        <img className='w-16 h-16' src={bootstrap} alt='React' title='React' />
-
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={djangoW} alt='Django' title='Django' />
-            : <img className='w-16 h-16' src={django} alt='Django' title='Django' />
-        }
-
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={gitW} alt='Git' title='Git' />
-            : <img className='w-16 h-16' src={git} alt='Git' title='Git' />
-        }
-
-        <img className='w-16 h-16' src={javascript} alt='React' title='React' />
-        <img className='w-16 h-16' src={nest} alt='React' title='React' />
-
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={nextL} alt='React' title='React' />
-            : <img className='w-16 h-16' src={next} alt='React' title='React' />
-        }
-
-        <img className='w-16 h-16' src={node} alt='React' title='React' />
-        <img className='w-16 h-16' src={python} alt='React' title='React' />
-        <img className='w-16 h-16' src={react} alt='React' title='React' />
-        <img className='w-16 h-16' src={tailwind} alt='React' title='React' />
-        <img className='w-16 h-16' src={typescript} alt='React' title='React' />
-      </div>
-
-      <div className='flex animate-horizontalScroll2 gap-12'>
-
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={amazonW} alt='React' title='Amazon Light' />
-            : <img className='w-16 h-16' src={amazon} alt='React' title='AWS' />
-        }
-
-        <img className='w-16 h-16' src={angular} alt='React' title='React' />
-        <img className='w-16 h-16' src={bootstrap} alt='React' title='React' />
-
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16 fill-white' src={djangoW} alt='Django' title='Django' />
-            : <img className='w-16 h-16' src={django} alt='Django' title='Django' />
-        }
-
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={gitW} alt='Git' title='Git' />
-            : <img className='w-16 h-16' src={git} alt='Git' title='Git' />
-        }
-
-        <img className='w-16 h-16' src={javascript} alt='React' title='React' />
-        <img className='w-16 h-16' src={nest} alt='React' title='React' />
-        {
-          theme === 'dark'
-            ? <img className='w-16 h-16' src={nextL} alt='React' title='React' />
-            : <img className='w-16 h-16' src={next} alt='React' title='React' />
-        }
-        <img className='w-16 h-16' src={node} alt='React' title='React' />
-        <img className='w-16 h-16' src={python} alt='React' title='React' />
-        <img className='w-16 h-16' src={react} alt='React' title='React' />
-        <img className='w-16 h-16' src={tailwind} alt='React' title='React' />
-        <img className='w-16 h-16' src={typescript} alt='React' title='React' />
-      </div>
-    </div>
   )
 }
