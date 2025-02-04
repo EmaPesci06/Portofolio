@@ -9,7 +9,7 @@ import cvEs from "../assets/Bubble Developer-Es-Emanuel-Pesci.pdf";
 import cvEn from "../assets/Bubble Developer-En-Emanuel-Pesci.pdf"; // Asegúrate de tener un CV en inglés
 
 export function Header() {
-  const { handleChangeTheme, theme } = useTheme();
+  const { handleChangeTheme } = useTheme();
   const { language }: any = useLanguage(); // Obtiene el idioma del contexto
 
   // Traducciones
