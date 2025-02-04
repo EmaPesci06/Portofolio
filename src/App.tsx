@@ -1,9 +1,9 @@
-import Contact from './components/Contact'
-import { Header } from './components/Header'
-import Projects from './components/Projects'
-import {LanguageProvider} from './context/LanguageContext.jsx'
+import Contact from "./components/Contact";
+import { Header } from "./components/Header";
+import Projects from "./components/Projects";
+import { LanguageProvider } from "./context/LanguageContext.jsx";
 
-function App () {
+function App() {
   return (
     <LanguageProvider>
       <Header />
@@ -15,11 +15,13 @@ function App () {
       </main>
 
       <footer>
-        <p className='text-center py-5 bg-slate-100 dark:bg-slate-700 dark:text-white'> © Emanuel Pesci - 2024</p>
+        <p className='text-center py-5 bg-slate-100 dark:bg-slate-700 dark:text-white'>
+          {" "}
+          © Emanuel Pesci - 2024
+        </p>
       </footer>
-
     </LanguageProvider>
-  )
+  );
 }
 
-export default App
+export default App;

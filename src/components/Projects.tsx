@@ -1,5 +1,5 @@
 import { CardProject } from "./Card-project";
-import { useLanguage } from "../context/LanguageContext"; // Importa el contexto de idioma
+import { useLanguage } from "../context/LanguageContext.tsx"; // Importa el contexto de idioma
 import nakeds from "../assets/img/nakeds.png";
 import theelevate from "../assets/img/theelevate.png";
 import ecompshere from "../assets/img/ecomsphere.png";
@@ -54,7 +54,7 @@ const projectsData: any = {
 };
 
 export default function Projects() {
-  const { language } = useLanguage();
+  const { language }: any = useLanguage();
   const projects = projectsData[language] || projectsData.en;
 
   return (

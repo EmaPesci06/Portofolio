@@ -1,4 +1,4 @@
-import { useLanguage } from "../context/LanguageContext"; // Importa el contexto de idioma
+import { useLanguage } from "../context/LanguageContext.tsx"; // Importa el contexto de idioma
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTheme } from "../hooks/useTheme";
 import { faMoon, faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ import cvEn from "../assets/Bubble Developer-En-Emanuel-Pesci.pdf"; // Asegúrat
 
 export function Header() {
   const { handleChangeTheme, theme } = useTheme();
-  const { language } = useLanguage(); // Obtiene el idioma del contexto
+  const { language }: any = useLanguage(); // Obtiene el idioma del contexto
 
   // Traducciones
   const translations: any = {

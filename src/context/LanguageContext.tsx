@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect, useContext } from "react";
 
-const LanguageContext = createContext();
+const LanguageContext = createContext({});
 
-export const LanguageProvider = ({ children }) => {
+export const LanguageProvider = ({ children }: { children: any }) => {
   const [language, setLanguage] = useState("en");
 
   useEffect(() => {
