@@ -232,15 +232,17 @@ export const translations = {
       viewProjects: "Ver proyectos",
       cvLink: cvEs,
     },
-    skills: { title: "Habilidades técnicas" },
+    skills: { overline: "Stack", title: "Habilidades técnicas" },
     projects: {
+      overline: "Portfolio",
       title: "Proyectos",
       subtitle: "Una selección de productos en los que trabajé.",
       visit: "Visitar sitio",
       privateProject: "Proyecto privado",
     },
-    experience: { title: "Experiencia" },
+    experience: { overline: "Trayectoria", title: "Experiencia" },
     contact: {
+      overline: "Hablemos",
       title: "Contacto",
       subtitle:
         "¿Tenés un proyecto en mente o buscás un desarrollador Bubble? Escribime.",
@@ -270,15 +272,17 @@ export const translations = {
       viewProjects: "View projects",
       cvLink: cvEn,
     },
-    skills: { title: "Technical skills" },
+    skills: { overline: "Stack", title: "Technical skills" },
     projects: {
+      overline: "Portfolio",
       title: "Projects",
       subtitle: "A selection of products I've worked on.",
       visit: "Visit site",
       privateProject: "Private project",
     },
-    experience: { title: "Experience" },
+    experience: { overline: "Career", title: "Experience" },
     contact: {
+      overline: "Let's talk",
       title: "Contact",
       subtitle:
         "Have a project in mind or looking for a Bubble developer? Get in touch.",
