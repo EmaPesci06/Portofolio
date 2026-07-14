@@ -1,17 +1,38 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import type { ReactNode } from "react";
 
-const LanguageContext = createContext({});
+export type Lang = "es" | "en";
 
-export const LanguageProvider = ({ children }: { children: any }) => {
-  const [language, setLanguage] = useState("en");
+interface LanguageContextValue {
+  language: Lang;
+  setLanguage: (lang: Lang) => void;
+}
+
+const LanguageContext = createContext<LanguageContextValue>({
+  language: "es",
+  setLanguage: () => {},
+});
+
+function getInitialLanguage(): Lang {
+  const stored = localStorage.getItem("language");
+  if (stored === "es" || stored === "en") return stored;
+  return navigator.language.startsWith("es") ? "es" : "en";
+}
+
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguageState] = useState<Lang>(getInitialLanguage);
 
   useEffect(() => {
-    const browserLang = navigator.language.split("-")[0]; // Detecta el idioma del navegador
-    setLanguage(browserLang === "es" ? "es" : "en"); // Usa "es" si el navegador está en español, sino "en"
-  }, []);
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const setLanguage = (lang: Lang) => {
+    localStorage.setItem("language", lang);
+    setLanguageState(lang);
+  };
 
   return (
-    <LanguageContext.Provider value={{ language }}>
+    <LanguageContext.Provider value={{ language, setLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

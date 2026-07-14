@@ -1,25 +1,26 @@
-import Contact from "./components/Contact";
-import { Header } from "./components/Header";
-import Projects from "./components/Projects";
-import { LanguageProvider } from "./context/LanguageContext.jsx";
+import { LanguageProvider } from "./context/LanguageContext";
+import { Navbar } from "./components/Navbar";
+import { Hero } from "./components/Hero";
+import { Skills } from "./components/Skills";
+import { Projects } from "./components/Projects";
+import { Experience } from "./components/Experience";
+import { Contact } from "./components/Contact";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
     <LanguageProvider>
-      <Header />
-
-      <main className='flex flex-col bg-zinc-300 dark:bg-zinc-900 dark:text-white py-5'>
-        <Projects />
-
-        <Contact />
-      </main>
-
-      <footer>
-        <p className='text-center py-5 bg-slate-100 dark:bg-slate-700 dark:text-white'>
-          {" "}
-          © Emanuel Pesci - 2024
-        </p>
-      </footer>
+      <div className='min-h-screen bg-white font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100'>
+        <Navbar />
+        <Hero />
+        <main>
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </LanguageProvider>
   );
 }
