@@ -1,9 +1,32 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
     --font-sans: "Inter", system-ui, sans-serif;
+    --font-display: "Hanken Grotesk", "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* Design system "Precision Engineering" (Stitch) */
+    --color-background: #101415;
+    --color-surface: #101415;
+    --color-surface-lowest: #0b0f10;
+    --color-surface-low: #191c1e;
+    --color-surface-container: #1d2022;
+    --color-surface-high: #272a2c;
+    --color-surface-highest: #323537;
+    --color-on-background: #e0e3e5;
+    --color-on-surface: #e0e3e5;
+    --color-on-surface-variant: #c3c6d7;
+    --color-outline: #8d90a0;
+    --color-outline-variant: #434655;
+    --color-primary: #b4c5ff;
+    --color-primary-container: #2563eb;
+    --color-on-primary: #002a78;
+    --color-on-primary-container: #eeefff;
+    --color-secondary: #4edea3;
+    --color-secondary-container: #00a572;
+    --color-on-secondary-container: #00311f;
+    --color-tertiary: #b7c8e1;
+    --color-error: #ffb4ab;
 }
 
 * {
@@ -12,4 +35,17 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+.glass-surface {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #b4c5ff 0%, #4edea3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }

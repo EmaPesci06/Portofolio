@@ -1,17 +1,20 @@
 interface SectionHeadingProps {
-  overline: string;
   title: string;
   subtitle?: string;
+  accent?: "primary" | "secondary";
 }
 
-export function SectionHeading({ overline, title, subtitle }: SectionHeadingProps) {
+const accentClasses = {
+  primary: "bg-primary",
+  secondary: "bg-secondary",
+};
+
+export function SectionHeading({ title, subtitle, accent = "primary" }: SectionHeadingProps) {
   return (
-    <div data-reveal>
-      <span className='text-xs font-semibold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400'>
-        {overline}
-      </span>
-      <h2 className='mt-2 text-2xl font-bold tracking-tight sm:text-3xl'>{title}</h2>
-      {subtitle && <p className='mt-2 text-slate-600 dark:text-slate-300'>{subtitle}</p>}
+    <div data-reveal className='flex flex-col gap-4'>
+      <h2 className='font-display text-3xl font-bold tracking-tight sm:text-5xl'>{title}</h2>
+      <div className={`h-1 w-24 rounded-full ${accentClasses[accent]}`} />
+      {subtitle && <p className='max-w-xl text-on-surface-variant'>{subtitle}</p>}
     </div>
   );
 }

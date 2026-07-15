@@ -1,17 +1,15 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faLocationDot, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useLanguage } from "../context/LanguageContext";
-import { translations, LINKS, FORMSPREE_ID } from "../content";
+import { translations, FORMSPREE_ID } from "../content";
 import { useSectionReveal } from "../hooks/useSectionReveal";
-import { SectionHeading } from "./SectionHeading";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 const inputClasses =
-  "w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 transition-shadow focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:border-slate-700 dark:bg-white/5 dark:text-white";
+  "rounded-xl border border-outline-variant/30 bg-surface-high px-4 py-3 text-on-surface placeholder-on-surface-variant/50 outline-none transition-all focus:border-transparent focus:ring-2 focus:ring-primary";
 
 export function Contact() {
   const { language } = useLanguage();
@@ -39,87 +37,94 @@ export function Contact() {
   };
 
   return (
-    <section
-      ref={ref}
-      id='contacto'
-      className='mx-auto max-w-5xl scroll-mt-20 px-4 py-14 sm:px-6'
-    >
-      <SectionHeading overline={t.overline} title={t.title} subtitle={t.subtitle} />
+    <section ref={ref} id='contacto' className='relative scroll-mt-20 px-6 py-16 md:py-28'>
+      <div
+        data-reveal
+        className='glass-surface relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-8 md:p-16'
+      >
+        <div className='absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-primary/5 blur-3xl' />
 
-      <div className='mt-8 grid gap-10 sm:grid-cols-2'>
-        <form onSubmit={handleSubmit} data-reveal className='flex flex-col gap-4'>
-          <div>
-            <label htmlFor='name' className='mb-1 block text-sm font-medium'>
-              {t.name}
-            </label>
-            <input id='name' name='name' type='text' required className={inputClasses} />
+        <div className='relative z-10 grid grid-cols-1 gap-12 md:grid-cols-2'>
+          <div className='flex flex-col gap-6'>
+            <h2 className='font-display text-3xl font-bold tracking-tight sm:text-5xl'>
+              {t.title}
+            </h2>
+            <p className='text-on-surface-variant'>{t.subtitle}</p>
+
+            <div className='mt-8 flex flex-col gap-4'>
+              <a
+                href='mailto:emanuelpesci@gmail.com'
+                className='flex cursor-pointer items-center gap-4 text-on-surface transition-colors hover:text-primary'
+              >
+                <span className='flex h-10 w-10 items-center justify-center rounded-full bg-primary/10'>
+                  <FontAwesomeIcon icon={faEnvelope} className='text-primary' />
+                </span>
+                <span className='font-medium'>emanuelpesci@gmail.com</span>
+              </a>
+              <div className='flex items-center gap-4 text-on-surface'>
+                <span className='flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10'>
+                  <FontAwesomeIcon icon={faLocationDot} className='text-secondary' />
+                </span>
+                <span className='font-medium'>{t.location}</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <label htmlFor='email' className='mb-1 block text-sm font-medium'>
-              {t.email}
-            </label>
-            <input id='email' name='email' type='email' required className={inputClasses} />
-          </div>
-          <div>
-            <label htmlFor='message' className='mb-1 block text-sm font-medium'>
-              {t.message}
-            </label>
-            <textarea
-              id='message'
-              name='message'
-              required
-              rows={5}
-              className={`${inputClasses} resize-none`}
-            />
-          </div>
 
-          <button
-            type='submit'
-            disabled={status === "sending"}
-            className='cursor-pointer rounded-lg bg-gradient-to-r from-sky-600 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-200 hover:shadow-indigo-500/50 hover:brightness-110 active:scale-95 disabled:opacity-60'
-          >
-            {status === "sending" ? t.sending : t.send}
-          </button>
+          <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-2'>
+              <label htmlFor='name' className='font-mono text-sm text-on-surface-variant'>
+                {t.name}
+              </label>
+              <input
+                id='name'
+                name='name'
+                type='text'
+                required
+                placeholder={t.namePlaceholder}
+                className={inputClasses}
+              />
+            </div>
+            <div className='flex flex-col gap-2'>
+              <label htmlFor='email' className='font-mono text-sm text-on-surface-variant'>
+                {t.email}
+              </label>
+              <input
+                id='email'
+                name='email'
+                type='email'
+                required
+                placeholder={t.emailPlaceholder}
+                className={inputClasses}
+              />
+            </div>
+            <div className='flex flex-col gap-2'>
+              <label htmlFor='message' className='font-mono text-sm text-on-surface-variant'>
+                {t.message}
+              </label>
+              <textarea
+                id='message'
+                name='message'
+                required
+                rows={4}
+                placeholder={t.messagePlaceholder}
+                className={`${inputClasses} resize-none`}
+              />
+            </div>
 
-          {status === "success" && (
-            <p className='text-sm font-medium text-emerald-600 dark:text-emerald-400'>
-              {t.success}
-            </p>
-          )}
-          {status === "error" && (
-            <p className='text-sm font-medium text-red-600 dark:text-red-400'>{t.error}</p>
-          )}
-        </form>
-
-        <div data-reveal>
-          <p className='text-sm font-medium text-slate-500 dark:text-slate-400'>{t.orDirect}</p>
-          <div className='mt-4 flex flex-col gap-3'>
-            <a
-              href={LINKS.email}
-              className='inline-flex cursor-pointer items-center gap-3 text-sm font-medium transition-colors hover:text-indigo-600 dark:hover:text-indigo-400'
+            <button
+              type='submit'
+              disabled={status === "sending"}
+              className='flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary py-4 font-display font-semibold text-on-primary transition-all hover:shadow-lg hover:shadow-primary/20 disabled:opacity-60'
             >
-              <FontAwesomeIcon icon={faEnvelope} className='h-5 w-5' />
-              emanuelpesci@gmail.com
-            </a>
-            <a
-              href={LINKS.linkedin}
-              target='_blank'
-              rel='noreferrer'
-              className='inline-flex cursor-pointer items-center gap-3 text-sm font-medium transition-colors hover:text-indigo-600 dark:hover:text-indigo-400'
-            >
-              <FontAwesomeIcon icon={faLinkedin} className='h-5 w-5' />
-              linkedin.com/in/emanuel-pesci
-            </a>
-            <a
-              href={LINKS.github}
-              target='_blank'
-              rel='noreferrer'
-              className='inline-flex cursor-pointer items-center gap-3 text-sm font-medium transition-colors hover:text-indigo-600 dark:hover:text-indigo-400'
-            >
-              <FontAwesomeIcon icon={faGithub} className='h-5 w-5' />
-              github.com/emapesci06
-            </a>
-          </div>
+              {status === "sending" ? t.sending : t.send}
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
+
+            {status === "success" && (
+              <p className='text-sm font-medium text-secondary'>{t.success}</p>
+            )}
+            {status === "error" && <p className='text-sm font-medium text-error'>{t.error}</p>}
+          </form>
         </div>
       </div>
     </section>

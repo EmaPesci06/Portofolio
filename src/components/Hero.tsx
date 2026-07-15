@@ -1,9 +1,8 @@
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faDownload, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faDownload, faArrowRight, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useLanguage } from "../context/LanguageContext";
-import { translations, LINKS } from "../content";
+import { translations } from "../content";
 import { gsap, useGSAP } from "../lib/gsap";
 import myself from "../assets/img/yoX2.webp";
 
@@ -20,9 +19,9 @@ export function Hero() {
           .timeline({ defaults: { ease: "power3.out" } })
           .from("[data-hero]", { opacity: 0, y: 28, duration: 0.7, stagger: 0.12 })
           .from(
-            "[data-hero-photo]",
-            { opacity: 0, scale: 0.88, duration: 0.9, ease: "expo.out" },
-            "<0.15"
+            "[data-hero-card]",
+            { opacity: 0, scale: 0.92, y: 20, duration: 0.9, ease: "expo.out" },
+            "<0.2"
           );
 
         gsap.to("[data-blob='1']", {
@@ -53,121 +52,131 @@ export function Hero() {
   );
 
   return (
-    <header
+    <section
       ref={container}
-      className='relative overflow-hidden'
       id='inicio'
+      className='relative flex min-h-[calc(100svh-5rem)] items-center overflow-hidden px-6'
     >
       {/* Luz ambiente decorativa */}
       <div data-blobs aria-hidden='true' className='pointer-events-none absolute inset-0'>
         <div
           data-blob='1'
-          className='absolute -top-24 -left-24 h-96 w-96 rounded-full bg-sky-400/20 blur-3xl dark:bg-indigo-600/25'
+          className='absolute -right-[10%] -top-[20%] h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]'
         />
         <div
           data-blob='2'
-          className='absolute top-40 -right-32 h-[28rem] w-[28rem] rounded-full bg-violet-400/20 blur-3xl dark:bg-violet-600/20'
+          className='absolute -bottom-[20%] -left-[10%] h-[400px] w-[400px] rounded-full bg-secondary/10 blur-[100px]'
         />
       </div>
 
-      <div className='relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-5xl flex-col items-center justify-center gap-12 px-4 py-16 sm:flex-row sm:items-center sm:gap-16 sm:px-6'>
-        <div className='order-2 text-center sm:order-1 sm:text-left'>
-          <span
+      <div className='mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 py-16 md:grid-cols-12'>
+        <div className='flex flex-col items-start gap-6 md:col-span-7 lg:col-span-8'>
+          <div
             data-hero
-            className='inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300'
+            className='inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary-container/20 px-4 py-2'
           >
-            <span className='relative flex h-2 w-2'>
-              <span className='absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-emerald-400 opacity-75' />
-              <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-500' />
-            </span>
-            {t.available}
-          </span>
+            <span className='h-2 w-2 rounded-full bg-secondary motion-safe:animate-pulse' />
+            <span className='font-mono text-sm tracking-wider text-secondary'>{t.available}</span>
+          </div>
 
           <h1
             data-hero
-            className='mt-5 text-5xl font-extrabold tracking-tight sm:text-7xl'
+            className='max-w-4xl font-display text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl'
           >
-            <span className='bg-gradient-to-r from-sky-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent dark:from-sky-400 dark:via-indigo-400 dark:to-violet-400'>
-              Emanuel Pesci
-            </span>
+            {t.titlePrefix}
+            <span className='text-gradient'>{t.titleGradient}</span>
           </h1>
-          <h2 data-hero className='mt-3 text-xl font-semibold sm:text-2xl'>
-            {t.title}
-          </h2>
-          <p
-            data-hero
-            className='mt-4 max-w-2xl text-slate-600 dark:text-slate-300'
-          >
+
+          <p data-hero className='max-w-2xl text-lg leading-relaxed text-on-surface-variant'>
             {t.description}
           </p>
 
-          <div
-            data-hero
-            className='mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start'
-          >
+          <div data-hero className='mt-4 flex flex-wrap gap-4'>
             <a
               href={t.cvLink}
               download='CV-Emanuel-Pesci.pdf'
-              className='inline-flex cursor-pointer items-center gap-2 rounded-lg bg-gradient-to-r from-sky-600 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-200 hover:shadow-indigo-500/50 hover:brightness-110 active:scale-95'
+              className='flex cursor-pointer items-center gap-2 rounded-xl bg-primary-container px-8 py-4 font-display font-semibold text-on-primary-container shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95'
             >
               <FontAwesomeIcon icon={faDownload} />
               {t.downloadCv}
             </a>
             <a
               href='#proyectos'
-              className='inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-300 bg-white/50 px-5 py-2.5 text-sm font-semibold text-slate-700 backdrop-blur transition-colors duration-200 hover:bg-slate-100 active:scale-95 dark:border-slate-700 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10'
+              className='flex cursor-pointer items-center gap-2 rounded-xl border border-outline-variant px-8 py-4 font-display font-semibold text-on-surface transition-all hover:bg-surface-highest/30 active:scale-95'
             >
               {t.viewProjects}
+              <FontAwesomeIcon icon={faArrowRight} />
             </a>
+          </div>
+        </div>
 
-            <div className='flex items-center gap-4 sm:ml-2'>
-              <a
-                href={LINKS.linkedin}
-                target='_blank'
-                rel='noreferrer'
-                aria-label='LinkedIn'
-                className='text-slate-500 transition-all duration-200 hover:scale-110 hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-400'
-              >
-                <FontAwesomeIcon icon={faLinkedin} className='h-6 w-6' />
-              </a>
-              <a
-                href={LINKS.github}
-                target='_blank'
-                rel='noreferrer'
-                aria-label='GitHub'
-                className='text-slate-500 transition-all duration-200 hover:scale-110 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
-              >
-                <FontAwesomeIcon icon={faGithub} className='h-6 w-6' />
-              </a>
-              <a
-                href={LINKS.email}
-                aria-label='Email'
-                className='text-slate-500 transition-all duration-200 hover:scale-110 hover:text-red-500 dark:text-slate-400 dark:hover:text-red-400'
-              >
-                <FontAwesomeIcon icon={faEnvelope} className='h-6 w-6' />
-              </a>
+        {/* Profile card */}
+        <div data-hero-card className='hidden md:col-span-5 md:block lg:col-span-4'>
+          <div className='group relative'>
+            <div className='absolute inset-0 rounded-3xl bg-primary/20 blur-2xl transition-all duration-500 group-hover:bg-primary/30' />
+            <div className='relative flex flex-col items-center gap-6 overflow-hidden rounded-3xl border border-outline-variant/20 bg-surface-high/50 p-8 text-center backdrop-blur-md transition-all duration-500 hover:border-primary/40 group-hover:-translate-y-2'>
+              <div className='mb-2 flex w-full items-center justify-between'>
+                <div className='flex gap-1.5'>
+                  <span className='h-2.5 w-2.5 rounded-full bg-error/40' />
+                  <span className='h-2.5 w-2.5 rounded-full bg-secondary/40' />
+                  <span className='h-2.5 w-2.5 rounded-full bg-primary/40' />
+                </div>
+                <span className='font-mono text-[10px] uppercase tracking-widest text-on-surface-variant/60'>
+                  Profile ID: EP-89
+                </span>
+              </div>
+
+              <div className='relative'>
+                <div className='h-32 w-32 overflow-hidden rounded-2xl border-2 border-primary/20 shadow-xl transition-all duration-500 group-hover:border-primary/60'>
+                  <img
+                    src={myself}
+                    alt='Emanuel Pesci'
+                    className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-110'
+                  />
+                </div>
+                <div className='absolute -bottom-2 -right-2 rounded-lg border border-secondary/20 bg-secondary-container p-1.5 text-on-secondary-container shadow-lg'>
+                  <FontAwesomeIcon icon={faCheck} className='h-4 w-4' />
+                </div>
+              </div>
+
+              <div className='space-y-1'>
+                <h2 className='font-display text-2xl font-semibold text-on-background'>
+                  Emanuel Pesci
+                </h2>
+                <div className='flex flex-col items-center gap-2'>
+                  <span className='font-mono text-sm font-semibold tracking-wide text-primary'>
+                    {t.card.role}
+                  </span>
+                  <span className='h-0.5 w-12 rounded-full bg-outline-variant/30' />
+                  <span className='text-sm font-medium text-on-surface-variant'>
+                    {t.card.subtitle}
+                  </span>
+                </div>
+              </div>
+
+              <div className='mt-4 flex w-full flex-col gap-3 rounded-2xl border border-outline-variant/20 bg-surface-high/50 p-4'>
+                <div className='flex items-center justify-between font-mono text-[11px]'>
+                  <span className='text-on-surface-variant'>{t.card.successRate}</span>
+                  <span className='font-bold text-secondary'>100%</span>
+                </div>
+                <div className='h-1.5 w-full overflow-hidden rounded-full bg-outline-variant/20'>
+                  <div className='h-full w-full bg-gradient-to-r from-primary to-secondary' />
+                </div>
+                <div className='grid grid-cols-2 gap-2 pt-1'>
+                  <span className='rounded-lg border border-outline-variant/10 bg-surface-container py-2 font-mono text-[10px] text-on-surface-variant'>
+                    {t.card.chipProjects}
+                  </span>
+                  <span className='rounded-lg border border-outline-variant/10 bg-surface-container py-2 font-mono text-[10px] text-on-surface-variant'>
+                    {t.card.chipYears}
+                  </span>
+                </div>
+              </div>
+
+              <div className='absolute -bottom-8 -right-8 h-24 w-24 rounded-full bg-primary/10 blur-2xl transition-all duration-500 group-hover:bg-primary/20' />
             </div>
           </div>
         </div>
-
-        <div data-hero-photo className='order-1 sm:order-2'>
-          <div className='rounded-full bg-gradient-to-tr from-sky-500 via-indigo-500 to-violet-500 p-1 shadow-2xl shadow-indigo-500/30'>
-            <img
-              src={myself}
-              alt='Emanuel Pesci'
-              className='h-44 w-44 rounded-full object-cover ring-4 ring-white dark:ring-slate-950 sm:h-56 sm:w-56'
-            />
-          </div>
-        </div>
-
-        <a
-          href='#skills'
-          aria-label={language === "es" ? "Bajar a habilidades" : "Scroll to skills"}
-          className='absolute bottom-6 left-1/2 hidden -translate-x-1/2 cursor-pointer text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-200 sm:block'
-        >
-          <FontAwesomeIcon icon={faChevronDown} className='h-5 w-5 motion-safe:animate-bounce' />
-        </a>
       </div>
-    </header>
+    </section>
   );
 }

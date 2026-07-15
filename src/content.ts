@@ -20,6 +20,7 @@ export const FORMSPREE_ID = "mpqvwpvd";
 
 export interface Project {
   title: string;
+  category: string;
   description: Record<Lang, string>;
   image?: string;
   url?: string;
@@ -29,6 +30,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "Demyo",
+    category: "SaaS",
     description: {
       es: "Plataforma española de renting de dispositivos reacondicionados. Mantuve y evolucioné la aplicación en producción sobre Bubble, garantizando estabilidad y mejora continua.",
       en: "Spanish platform for renting refurbished devices. I maintained and evolved the production application on Bubble, ensuring stability and continuous improvement.",
@@ -39,24 +41,27 @@ export const projects: Project[] = [
   },
   {
     title: "Emendu",
+    category: "SaaS",
     description: {
       es: "Plataforma de renting de equipamiento tecnológico para empresas. Mantenimiento evolutivo en Bubble e integración con Atera para gestión IT.",
       en: "Tech equipment rental platform for companies. Ongoing development on Bubble and integration with Atera for IT management.",
     },
     image: emendu,
     url: "https://app.emendu.com/",
-    tags: ["Bubble", "Atera", "Producción"],
+    tags: ["Bubble", "Atera"],
   },
   {
     title: "Winebank",
+    category: "Fintech",
     description: {
       es: "MVP desarrollado en Bubble desde cero: plataforma de inversión en vinos con pagos vía Mercado Pago y funcionalidades de IA con Google Gemini.",
       en: "MVP built in Bubble from scratch: wine investment platform with Mercado Pago payments and AI features powered by Google Gemini.",
     },
-    tags: ["Bubble", "Mercado Pago", "Google Gemini"],
+    tags: ["Bubble", "Mercado Pago", "Gemini"],
   },
   {
     title: "Buyer-Match",
+    category: "PropTech",
     description: {
       es: "MVP desarrollado en Bubble desde cero: plataforma de comunicación que conecta compradores de viviendas con las propiedades indicadas.",
       en: "MVP built in Bubble from scratch: a communication platform connecting home buyers with the right properties.",
@@ -67,16 +72,18 @@ export const projects: Project[] = [
   },
   {
     title: "Naked's",
+    category: "E-commerce",
     description: {
       es: "Tienda e-commerce completa construida en Bubble, con seguimiento de pedidos en tiempo real y gestión de stock y reportes automatizada vía APIs y plugins.",
       en: "Complete e-commerce store built in Bubble, with real-time order tracking and automated stock management and reporting via APIs and plugins.",
     },
     image: nakeds,
     url: "https://nakeds.app/",
-    tags: ["Bubble", "E-commerce"],
+    tags: ["Bubble", "APIs"],
   },
   {
     title: "The Elevate",
+    category: "SaaS",
     description: {
       es: "Plataforma de crecimiento personal y profesional en Bubble. Integré Stripe y ChatGPT para automatizar pagos y mensajería, y contribuí a mejoras del núcleo del producto.",
       en: "Personal and professional growth platform on Bubble. I integrated Stripe and ChatGPT to automate payments and messaging, and contributed core product improvements.",
@@ -87,13 +94,14 @@ export const projects: Project[] = [
   },
   {
     title: "EcomSphere USA",
+    category: "Operations",
     description: {
       es: "Soluciones no-code con Softr y SmartSuite que automatizaron operaciones comerciales, centralizando flujos de trabajo y datos en una única plataforma.",
       en: "No-code solutions with Softr and SmartSuite that automated business operations, centralizing workflows and data into a single platform.",
     },
     image: ecomsphere,
     url: "https://app.ecomsphereusa.com/",
-    tags: ["Softr", "SmartSuite", "Automatización"],
+    tags: ["Softr", "SmartSuite"],
   },
 ];
 
@@ -172,46 +180,34 @@ export const experience: ExperienceItem[] = [
 
 export interface SkillGroup {
   title: Record<Lang, string>;
+  accent: "primary" | "secondary" | "tertiary";
   skills: string[];
 }
 
 export const skillGroups: SkillGroup[] = [
   {
     title: { es: "No-Code / Low-Code", en: "No-Code / Low-Code" },
+    accent: "primary",
     skills: ["Bubble", "Softr", "SmartSuite", "Xano", "Voiceflow"],
   },
   {
-    title: { es: "Automatización e integraciones", en: "Automation & integrations" },
-    skills: [
-      "Make",
-      "Zapier",
-      "Integrately",
-      "APIs REST",
-      "Webhooks",
-      "Stripe",
-      "Mercado Pago",
-      "Twilio",
-    ],
+    title: { es: "Automatización", en: "Automation" },
+    accent: "secondary",
+    skills: ["Make", "Zapier", "Integrately", "APIs REST", "Webhooks", "Stripe", "Mercado Pago", "Twilio"],
   },
   {
-    title: { es: "IA aplicada", en: "Applied AI" },
+    title: { es: "IA Aplicada", en: "Applied AI" },
+    accent: "tertiary",
     skills: ["OpenAI (ChatGPT)", "Google Gemini", "Retell AI", "ElevenLabs"],
   },
   {
-    title: { es: "Lenguajes y frameworks", en: "Languages & frameworks" },
-    skills: [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "React",
-      "Node.js",
-      "Express",
-      "Nest.js",
-      "Django",
-    ],
+    title: { es: "Lenguajes & Frameworks", en: "Languages & Frameworks" },
+    accent: "primary",
+    skills: ["JavaScript", "TypeScript", "Python", "React", "Node.js", "Nest.js", "Django"],
   },
   {
-    title: { es: "Bases de datos", en: "Databases" },
+    title: { es: "Data & Cloud", en: "Data & Cloud" },
+    accent: "secondary",
     skills: ["MySQL", "MongoDB", "Supabase", "SQLite", "DynamoDB"],
   },
 ];
@@ -222,79 +218,103 @@ export const translations = {
       projects: "Proyectos",
       experience: "Experiencia",
       contact: "Contacto",
+      downloadCv: "Descargar CV",
     },
     hero: {
       available: "Disponible para nuevos proyectos",
-      title: "Desarrollador Bubble & No-Code",
+      titlePrefix: "Emanuel Pesci: ",
+      titleGradient: "Desarrollador Bubble & No-Code",
       description:
-        "Más de 3 años construyendo aplicaciones web escalables para clientes de Argentina, Estados Unidos y España. Especializado en Bubble, automatización de procesos e integraciones de APIs y pagos (Stripe, Mercado Pago, Twilio, OpenAI, Gemini), con base sólida en JavaScript, React y Node.js.",
+        "Más de 3 años construyendo aplicaciones web escalables para clientes de Argentina, Estados Unidos y España. Transformo ideas complejas en productos digitales de alto rendimiento.",
       downloadCv: "Descargar CV",
       viewProjects: "Ver proyectos",
       cvLink: cvEs,
+      card: {
+        role: "BUBBLE EXPERT",
+        subtitle: "Arquitecto No-Code",
+        successRate: "SUCCESS RATE",
+        chipProjects: "10+ PROYECTOS",
+        chipYears: "3+ AÑOS EXP",
+      },
     },
-    skills: { overline: "Stack", title: "Habilidades técnicas" },
+    skills: { title: "Habilidades técnicas" },
     projects: {
-      overline: "Portfolio",
-      title: "Proyectos",
-      subtitle: "Una selección de productos en los que trabajé.",
+      title: "Proyectos seleccionados",
+      subtitle:
+        "Una selección de productos digitales construidos con enfoque en escalabilidad y UX.",
+      filterLabel: "Filtrar por:",
+      filterAll: "Todos",
       visit: "Visitar sitio",
       privateProject: "Proyecto privado",
     },
-    experience: { overline: "Trayectoria", title: "Experiencia" },
+    experience: { title: "Trayectoria profesional" },
     contact: {
-      overline: "Hablemos",
-      title: "Contacto",
+      title: "¿Tenés un proyecto en mente?",
       subtitle:
-        "¿Tenés un proyecto en mente o buscás un desarrollador Bubble? Escribime.",
+        "Hablemos sobre cómo puedo ayudarte a construir tu próximo producto digital escalable.",
+      location: "Mar del Plata, Argentina (GMT-3)",
       name: "Nombre",
+      namePlaceholder: "Tu nombre",
       email: "Email",
+      emailPlaceholder: "tu@email.com",
       message: "Mensaje",
+      messagePlaceholder: "¿En qué puedo ayudarte?",
       send: "Enviar mensaje",
       sending: "Enviando…",
       success: "¡Mensaje enviado! Te respondo a la brevedad.",
       error: "No se pudo enviar el mensaje. Escribime directamente a mi email.",
-      orDirect: "También podés encontrarme en",
     },
-    footer: "Hecho con React y Tailwind CSS",
+    footer: "Todos los derechos reservados.",
   },
   en: {
     nav: {
       projects: "Projects",
       experience: "Experience",
       contact: "Contact",
+      downloadCv: "Download CV",
     },
     hero: {
       available: "Open to new opportunities",
-      title: "Bubble & No-Code Developer",
+      titlePrefix: "Emanuel Pesci: ",
+      titleGradient: "Bubble & No-Code Developer",
       description:
-        "3+ years building scalable web applications for clients in Argentina, the United States and Spain. Specialized in Bubble, process automation and API & payment integrations (Stripe, Mercado Pago, Twilio, OpenAI, Gemini), with a solid foundation in JavaScript, React and Node.js.",
+        "3+ years building scalable web applications for clients in Argentina, the United States and Spain. I turn complex ideas into high-performance digital products.",
       downloadCv: "Download CV",
       viewProjects: "View projects",
       cvLink: cvEn,
+      card: {
+        role: "BUBBLE EXPERT",
+        subtitle: "No-Code Architect",
+        successRate: "SUCCESS RATE",
+        chipProjects: "10+ PROJECTS",
+        chipYears: "3+ YEARS EXP",
+      },
     },
-    skills: { overline: "Stack", title: "Technical skills" },
+    skills: { title: "Technical skills" },
     projects: {
-      overline: "Portfolio",
-      title: "Projects",
-      subtitle: "A selection of products I've worked on.",
+      title: "Selected projects",
+      subtitle: "A selection of digital products built with a focus on scalability and UX.",
+      filterLabel: "Filter by:",
+      filterAll: "All",
       visit: "Visit site",
       privateProject: "Private project",
     },
-    experience: { overline: "Career", title: "Experience" },
+    experience: { title: "Professional experience" },
     contact: {
-      overline: "Let's talk",
-      title: "Contact",
-      subtitle:
-        "Have a project in mind or looking for a Bubble developer? Get in touch.",
+      title: "Have a project in mind?",
+      subtitle: "Let's talk about how I can help you build your next scalable digital product.",
+      location: "Mar del Plata, Argentina (GMT-3)",
       name: "Name",
+      namePlaceholder: "Your name",
       email: "Email",
+      emailPlaceholder: "you@email.com",
       message: "Message",
+      messagePlaceholder: "How can I help you?",
       send: "Send message",
       sending: "Sending…",
       success: "Message sent! I'll get back to you shortly.",
       error: "The message could not be sent. Please email me directly.",
-      orDirect: "You can also find me on",
     },
-    footer: "Built with React and Tailwind CSS",
+    footer: "All rights reserved.",
   },
 } as const;
