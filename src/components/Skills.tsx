@@ -1,43 +1,30 @@
 import { useLanguage } from "../context/LanguageContext";
 import { translations, skillGroups } from "../content";
-import { useSectionReveal } from "../hooks/useSectionReveal";
-import { SectionHeading } from "./SectionHeading";
-
-const accentText = {
-  primary: "text-primary",
-  secondary: "text-secondary",
-  tertiary: "text-tertiary",
-};
 
 export function Skills() {
   const { language } = useLanguage();
   const t = translations[language].skills;
-  const ref = useSectionReveal<HTMLElement>();
 
   return (
-    <section ref={ref} id='skills' className='scroll-mt-20 bg-surface-lowest px-6 py-16 md:py-28'>
-      <div className='mx-auto max-w-7xl'>
-        <SectionHeading title={t.title} />
-
-        <div className='mt-16 grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-5'>
+    <section id='stack' className='border-t border-line bg-card/40 px-5 py-16 sm:px-8 md:py-20'>
+      <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-[11rem_1fr]'>
+        <h2 className='font-display text-3xl font-bold tracking-tight'>{t.title}</h2>
+        <dl className='flex flex-col gap-5'>
           {skillGroups.map((group) => (
-            <div key={group.title.en} data-reveal className='glass-surface flex flex-col gap-4 rounded-2xl p-6'>
-              <h3 className={`font-mono text-sm uppercase tracking-wider ${accentText[group.accent]}`}>
+            <div key={group.title.en} className='grid grid-cols-1 gap-2 sm:grid-cols-[13rem_1fr] sm:gap-6'>
+              <dt className='font-mono text-xs uppercase tracking-[0.14em] text-muted sm:pt-1.5'>
                 {group.title[language]}
-              </h3>
-              <div className='flex flex-wrap gap-2'>
+              </dt>
+              <dd className='flex flex-wrap gap-1.5'>
                 {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className='rounded-full border border-outline-variant/50 bg-surface-high px-3 py-1 text-sm font-medium'
-                  >
+                  <span key={skill} className='rounded border border-line bg-card px-2.5 py-1 text-sm'>
                     {skill}
                   </span>
                 ))}
-              </div>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );
