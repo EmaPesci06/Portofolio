@@ -159,6 +159,7 @@ export const projects: Project[] = [
       es: "Funciones para que los transportistas vean su perfil y sus viajes, los acepten y los compartan por WhatsApp.",
       en: "Features that let carriers see their profile and jobs, accept them and share them on WhatsApp.",
     },
+    url: "https://app.fletech.com.ar/",
     tags: ["Bubble", "WhatsApp"],
   },
   {
