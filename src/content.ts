@@ -7,6 +7,7 @@ import nakeds from "./assets/img/nakeds.png";
 import theelevate from "./assets/img/theelevate.png";
 import ecomsphere from "./assets/img/ecomsphere.png";
 import fletech from "./assets/img/fletech.webp";
+import winebank from "./assets/img/winebank.webp";
 
 import cvEs from "./assets/CV-Emanuel-Pesci-Es.pdf";
 import cvEn from "./assets/CV-Emanuel-Pesci-En.pdf";
@@ -114,6 +115,7 @@ export const projects: Project[] = [
       es: "Marketplace de vinos curados en Bubble: arquitectura, datos, admin y releases. Mercado Pago con JavaScript propio y Gemini para normalizar las fotos.",
       en: "Curated wine marketplace in Bubble: architecture, data model, admin and releases. Mercado Pago with custom JavaScript and Gemini to normalize photos.",
     },
+    image: winebank,
     tags: ["Bubble", "Mercado Pago", "Gemini"],
   },
   {
