@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-@theme {
+/* Paleta "mesa de trabajo": papel frío, tinta, cobalto para acciones,
+   verde para resultados. Claro por defecto, oscuro por sistema o selector. */
+:root {
+  --paper: #eef1f0;
+  --card: #ffffff;
+  --ink: #0f1a1c;
+  --muted: #566264;
+  --line: #d3d9d8;
+  --cobalt: #2e46f0;
+  --on-cobalt: #ffffff;
+  --cobalt-soft: #e3e7ff;
+  --done: #187a54;
+  --done-soft: #d6efe3;
+  --grid: rgb(15 26 28 / 0.06);
+  --console: #0f1a1c;
+  --console-line: #26353a;
+  --console-text: #c9d4d3;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --paper: #0c1315;
+  --card: #141d20;
+  --ink: #e4ebea;
+  --muted: #98a8a9;
+  --line: #263337;
+  --cobalt: #8d9bff;
+  --on-cobalt: #0c1315;
+  --cobalt-soft: #1d2552;
+  --done: #6cd6a6;
+  --done-soft: #12352a;
+  --grid: rgb(228 235 234 / 0.05);
+  --console: #070c0d;
+  --console-line: #263337;
+  --console-text: #c9d4d3;
+  color-scheme: dark;
+}
+
+@theme inline {
   --font-sans: "Instrument Sans", system-ui, sans-serif;
   --font-display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Paleta "workbench": papel frío, tinta, cobalto para acciones,
-     ámbar para lo que espera a una persona, verde para lo resuelto. */
-  --color-paper: #eef1f0;
-  --color-card: #ffffff;
-  --color-ink: #0f1a1c;
-  --color-muted: #566264;
-  --color-line: #d3d9d8;
-  --color-cobalt: #2e46f0;
-  --color-cobalt-soft: #e3e7ff;
-  --color-amber: #b87800;
-  --color-amber-soft: #fbedc9;
-  --color-done: #187a54;
-  --color-done-soft: #d6efe3;
-  --color-console: #0f1a1c;
-  --color-console-line: #26353a;
-  --color-console-text: #c9d4d3;
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-cobalt: var(--cobalt);
+  --color-on-cobalt: var(--on-cobalt);
+  --color-cobalt-soft: var(--cobalt-soft);
+  --color-done: var(--done);
+  --color-done-soft: var(--done-soft);
+  --color-console: var(--console);
+  --color-console-line: var(--console-line);
+  --color-console-text: var(--console-text);
 }
 
 * {
@@ -32,26 +67,28 @@ html {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--paper);
+  color: var(--ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-cobalt);
+  outline: 2px solid var(--cobalt);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Fondo de grilla tipo editor visual, solo detrás del hero */
 .workbench-grid {
   background-image:
-    linear-gradient(to right, rgb(15 26 28 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(15 26 28 / 0.06) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+.workbench-grid-fade {
   mask-image: linear-gradient(to bottom, black 60%, transparent);
 }
 
-/* Traza del agente: cada paso aparece en orden */
 @keyframes trace-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -69,6 +106,7 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  body { transition: none; }
   .trace-step { opacity: 1; animation: none; }
   .trace-pulse { animation: none; }
 }

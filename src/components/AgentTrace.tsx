@@ -16,7 +16,7 @@ export function AgentTrace({ title, caption, steps, waiting }: AgentTraceProps) 
   const delay = (i: number) => ({ animationDelay: `${300 + i * 450}ms` });
 
   return (
-    <figure className='w-full overflow-hidden rounded-xl border border-console-line bg-console text-console-text shadow-[0_24px_60px_-20px_rgb(15_26_28/0.45)]'>
+    <figure className='w-full overflow-hidden rounded-xl border border-console-line bg-console min-w-0 text-console-text shadow-[0_24px_60px_-20px_rgb(0_0_0/0.45)]'>
       <div className='flex items-center justify-between border-b border-console-line px-4 py-3'>
         <span className='font-mono text-xs text-console-text/70'>
           <span className='text-[#8fa3ff]'>claude</span> › {title}
