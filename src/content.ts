@@ -366,8 +366,11 @@ export const experience: Job[] = [
   {
     period: { es: "may. 2024 – jun. 2024", en: "May 2024 – Jun 2024" },
     company: "No Country",
-    role: { es: "Desarrollador de front-end", en: "Front-End Developer" },
-    summary: { es: "", en: "" },
+    role: { es: "Desarrollador de front-end (simulación laboral)", en: "Front-End Developer (job simulation)" },
+    summary: {
+      es: "Simulación laboral en la que construí un portal de gestión legal.",
+      en: "Job simulation where I built a legal management portal.",
+    },
     bullets: { es: [], en: [] },
   },
   {
