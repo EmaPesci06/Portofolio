@@ -1,51 +1,112 @@
 @import "tailwindcss";
 
-@theme {
-    --font-sans: "Inter", system-ui, sans-serif;
-    --font-display: "Hanken Grotesk", "Inter", system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+/* Paleta "mesa de trabajo": papel frío, tinta, cobalto para acciones,
+   verde para resultados. Claro por defecto, oscuro por sistema o selector. */
+:root {
+  --paper: #eef1f0;
+  --card: #ffffff;
+  --ink: #0f1a1c;
+  --muted: #566264;
+  --line: #d3d9d8;
+  --cobalt: #2e46f0;
+  --on-cobalt: #ffffff;
+  --cobalt-soft: #e3e7ff;
+  --done: #187a54;
+  --done-soft: #d6efe3;
+  --grid: rgb(15 26 28 / 0.06);
+  --console: #0f1a1c;
+  --console-line: #26353a;
+  --console-text: #c9d4d3;
+  color-scheme: light;
+}
 
-    /* Design system "Precision Engineering" (Stitch) */
-    --color-background: #101415;
-    --color-surface: #101415;
-    --color-surface-lowest: #0b0f10;
-    --color-surface-low: #191c1e;
-    --color-surface-container: #1d2022;
-    --color-surface-high: #272a2c;
-    --color-surface-highest: #323537;
-    --color-on-background: #e0e3e5;
-    --color-on-surface: #e0e3e5;
-    --color-on-surface-variant: #c3c6d7;
-    --color-outline: #8d90a0;
-    --color-outline-variant: #434655;
-    --color-primary: #b4c5ff;
-    --color-primary-container: #2563eb;
-    --color-on-primary: #002a78;
-    --color-on-primary-container: #eeefff;
-    --color-secondary: #4edea3;
-    --color-secondary-container: #00a572;
-    --color-on-secondary-container: #00311f;
-    --color-tertiary: #b7c8e1;
-    --color-error: #ffb4ab;
+:root[data-theme="dark"] {
+  --paper: #0c1315;
+  --card: #141d20;
+  --ink: #e4ebea;
+  --muted: #98a8a9;
+  --line: #263337;
+  --cobalt: #8d9bff;
+  --on-cobalt: #0c1315;
+  --cobalt-soft: #1d2552;
+  --done: #6cd6a6;
+  --done-soft: #12352a;
+  --grid: rgb(228 235 234 / 0.05);
+  --console: #070c0d;
+  --console-line: #263337;
+  --console-text: #c9d4d3;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-cobalt: var(--cobalt);
+  --color-on-cobalt: var(--on-cobalt);
+  --color-cobalt-soft: var(--cobalt-soft);
+  --color-done: var(--done);
+  --color-done-soft: var(--done-soft);
+  --color-console: var(--console);
+  --color-console-line: var(--console-line);
+  --color-console-text: var(--console-text);
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-.glass-surface {
-    background: rgba(30, 41, 59, 0.4);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(51, 65, 85, 0.5);
+body {
+  background: var(--paper);
+  color: var(--ink);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.text-gradient {
-    background: linear-gradient(135deg, #b4c5ff 0%, #4edea3 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.workbench-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.workbench-grid-fade {
+  mask-image: linear-gradient(to bottom, black 60%, transparent);
+}
+
+@keyframes trace-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes trace-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.trace-step {
+  opacity: 0;
+  animation: trace-in 0.45s ease-out forwards;
+}
+.trace-pulse {
+  animation: trace-pulse 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body { transition: none; }
+  .trace-step { opacity: 1; animation: none; }
+  .trace-pulse { animation: none; }
 }
